@@ -1,3 +1,4 @@
+from urllib.parse import _ResultMixinBase
 import pandas as pd
 import streamlit as st
 import numpy as np
@@ -54,7 +55,7 @@ def apply_model(param, predict):
             i_best = i
     #param = [list(param[0])]
     #pred = regressor.predict(param)
-        results = results.append({'Modelo': models[i],'R2': r2,'MAE': mae}, ignore_index=True)
+        results = results.append({'Modelo': models[i],'R2': r2,'MAE': mae, 'reg': regressor}, ignore_index=True)
     return results
 
 
@@ -89,11 +90,12 @@ btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
     results = apply_model(df, In16)
-    st.write(results)
+    st.write(_ResultMixinBase[['Modelo','MAE','R2']])
 
 
-    best_model = results['Modelo'][results['R2'] == results['R2'].max()].values
-    model = LinearRegression()
+    best_model = results['reg'][results['R2'] == results['R2'].max()].values
+    model = best_model[0]
+
     st.write(model)
 
 
