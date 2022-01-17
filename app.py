@@ -14,10 +14,8 @@ def apply_model(param, predict):
 
     x = df[[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)']].values
     y = df[predict].values
-
-    st.write(type(predict))
     
-    X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, shuffle = True, random_state=2)
+    X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, random_state=42)
     
     regressor = LinearRegression()
     regressor.fit(X_train, y_train)
@@ -29,10 +27,7 @@ def apply_model(param, predict):
     return pred
 
 
-
-st.title("Determinar composição")
-
-
+st.title("Determinar propriedades da liga")
 
 # ----SIDEBAR-----
 st.sidebar.title("Definir parâmetros")
