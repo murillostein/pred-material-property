@@ -97,6 +97,6 @@ if btn_predict:
 
     st.write(model)
 
-
+    df = [list(df)]
     prediction = model.predict(df)
     st.write(prediction)
