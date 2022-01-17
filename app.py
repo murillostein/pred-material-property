@@ -2,6 +2,8 @@ import pandas as pd
 import streamlit as st
 import numpy as np
 
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 
 def get_data():
     return pd.read_csv("data.csv")
@@ -10,12 +12,11 @@ def apply_model(param, predict):
 
     df = get_data()
 
-    x = df.drop(columns=[" Tensile Strength (MPa)"," Elongation (%)"," Reduction in Area (%)"])
+    x = df.drop(columns=[" Tensile Strength (MPa)"," Elongation (%)"," Reduction in Area (%)"]).values
     y = df[predict].values
 
 
-    from sklearn.model_selection import train_test_split
-    from sklearn.linear_model import LinearRegression
+    
     X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, shuffle = True, random_state=2)
     
     regressor = LinearRegression()
