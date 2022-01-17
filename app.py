@@ -93,7 +93,7 @@ if btn_predict:
 
 
     best_model = results['Modelo'][results['R2'] == results['R2'].max()].values
-    model = best_model[0]
+    model = LinearRegression()
     st.write(model)
 
 
