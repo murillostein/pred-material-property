@@ -92,5 +92,5 @@ if btn_predict:
     st.write(results)
 
 
-    best_model = results['Modelo'][results['R2'] == results['R2'].max()]
+    best_model = results['Modelo'][results['R2'] == results['R2'].max()].item()
     st.write(best_model)
