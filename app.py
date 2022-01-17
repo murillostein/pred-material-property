@@ -24,7 +24,7 @@ def apply_model(param, predict):
     
     
 
-    pred = regressor.predict(param)
+    pred = regressor.predict(param.values)
 
     return pred
 
@@ -57,8 +57,10 @@ In16 = st.sidebar.selectbox("Predict:",[" Tensile Strength (MPa)"," Elongation (
 param = [In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15]
 # talvez colocar um if de impurezas
 
+df = pd.DataFrame(param, columns=[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)'])
+
 btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
-    pred = apply_model(param, In16)
+    pred = apply_model(df, In16)
     st.write(pred)
