@@ -25,8 +25,6 @@ def apply_model(param, predict):
     r2 = 0
     i_best = 0
 
-
-
     results = pd.DataFrame()
     for i in range(0, len(models)):
 
