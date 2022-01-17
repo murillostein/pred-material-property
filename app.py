@@ -28,17 +28,17 @@ def apply_model(param, predict):
 
 
     results = pd.DataFrame()
-    for i in range(1, len(models)):
+    for i in range(0, len(models)):
 
-        if i == 1:
+        if i == 0:
             regressor = LinearRegression()
 
-        if i == 2:
+        if i == 1:
             regressor = DecisionTreeRegressor()
 
 
 
-        if i == 3:
+        if i == 2:
             regressor = RandomForestRegressor()
         
         regressor.fit(X_train, y_train)
@@ -90,3 +90,7 @@ btn_predict = st.sidebar.button("Prever")
 if btn_predict:
     results = apply_model(df, In16)
     st.write(results)
+
+
+    best_model = results['Modelo'][results['R2'] == results['R2'].max()]
+    st.write(best_model)
