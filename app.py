@@ -99,5 +99,5 @@ if btn_predict:
     st.write(model)
 
 
-    prediction = model.predict(df.values)
-    st.write(prediction)
+    #prediction = model.predict(df.values)
+    #st.write(prediction)
