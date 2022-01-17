@@ -20,7 +20,7 @@ def apply_model(param, predict):
     
     X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, random_state=42)
     
-    models = ['LinearRegression', 'DecisionTreeRegressor','RandomForestRegressor']
+    models = ['Linear Regression', 'Decision Tree Regressor','Random Forest Regressor']
     mae = 1000
     r2 = 0
     i_best = 0
@@ -89,14 +89,14 @@ btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
     results = apply_model(df, In16)
-    st.write(results[['Modelo','MAE','R2']])
+    st.write(results[['Modelo','MAE','R2']].set_index('Modelo'))
 
 
     best_model = results['reg'][results['R2'] == results['R2'].max()].values
     model = best_model[0]
 
-    st.write(model)
+    #st.write(model)
 
     df = [list(df[0])]
     prediction = model.predict(df)
-    st.write(prediction)
+    st.write(prediction.value)
