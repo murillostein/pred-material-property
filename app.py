@@ -99,4 +99,4 @@ if btn_predict:
 
     df = [list(df[0])]
     prediction = model.predict(df)
-    st.write(prediction.value)
+    st.write('Previsão: ', prediction.item())
