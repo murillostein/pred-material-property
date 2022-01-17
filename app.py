@@ -4,9 +4,12 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 def get_data():
-    return pd.read_csv("data.csv")
+    return pd.read_csv("data_clean.csv")
 
 def apply_model(param, predict):
 
@@ -17,14 +20,38 @@ def apply_model(param, predict):
     
     X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, random_state=42)
     
-    regressor = LinearRegression()
-    regressor.fit(X_train, y_train)
-    
-    
-    param = [list(param[0])]
-    pred = regressor.predict(param)
+    models = ['LinearRegression', 'DecisionTreeRegressor','RandomForestRegressor']
+    mae = 1000
+    r2 = 0
+    for i in range(0, len(models)):
 
-    return pred
+        if i == 1:
+            regressor = LinearRegression()
+
+        if i == 2:
+            regressor = DecisionTreeRegressor()
+
+
+
+        if i == 3:
+            regressor = RandomForestRegressor()
+        
+        regressor.fit(X_train, y_train)
+
+        pred = regressor.predict(X_test)
+        
+        mae_i, r2_i =  mean_absolute_error(y_test, pred), r2_score(y_test, pred)
+
+        if mae_i < mae and r2_i > r2:
+            mae = mae_i
+            r2 = r2_i
+
+            best_model = regressor
+
+    #param = [list(param[0])]
+    #pred = regressor.predict(param)
+
+    return regressor
 
 
 st.title("Determinar propriedades da liga")
@@ -57,5 +84,5 @@ df = pd.DataFrame(param,[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' C
 btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
-    pred = apply_model(df, In16)
-    st.write(pred)
+    best_model = apply_model(df, In16)
+    st.write(best_model)
