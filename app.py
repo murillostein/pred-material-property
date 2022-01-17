@@ -24,6 +24,10 @@ def apply_model(param, predict):
     mae = 1000
     r2 = 0
     i_best = 0
+
+
+
+    results = pd.DataFrame()
     for i in range(1, len(models)):
 
         if i == 1:
@@ -50,8 +54,12 @@ def apply_model(param, predict):
             i_best = i
     #param = [list(param[0])]
     #pred = regressor.predict(param)
-
-    return models[i_best]
+        results.append({
+            'Modelo': models[i],
+            'R2': r2,
+            'MAE': mae
+        })
+    return results
 
 
 st.title("Determinar propriedades da liga")
@@ -84,5 +92,5 @@ df = pd.DataFrame(param,[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' C
 btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
-    best_model = apply_model(df, In16)
-    st.write(best_model)
+    results = apply_model(df, In16)
+    st.write(results)
