@@ -39,7 +39,7 @@ def apply_model(param, predict):
         
         regressor.fit(X_train, y_train)
 
-        
+        pred = regressor.predict(X_test)
         mae_i, r2_i =  mean_absolute_error(y_test, pred), r2_score(y_test, pred)
 
         if mae_i < mae and r2_i > r2:
