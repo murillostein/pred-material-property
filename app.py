@@ -54,11 +54,7 @@ def apply_model(param, predict):
             i_best = i
     #param = [list(param[0])]
     #pred = regressor.predict(param)
-        results.append({
-            'Modelo': models[i],
-            'R2': r2,
-            'MAE': mae
-        }, ignore_index=True)
+        results = results.append({'Modelo': models[i],'R2': r2,'MAE': mae}, ignore_index=True)
     return results
 
 
