@@ -23,6 +23,7 @@ def apply_model(param, predict):
     models = ['LinearRegression', 'DecisionTreeRegressor','RandomForestRegressor']
     mae = 1000
     r2 = 0
+    i_best = 0
     for i in range(0, len(models)):
 
         if i == 1:
@@ -47,11 +48,11 @@ def apply_model(param, predict):
             r2 = r2_i
 
             best_model = regressor
-
+            i_best = i
     #param = [list(param[0])]
     #pred = regressor.predict(param)
 
-    return regressor
+    return models[i_best]
 
 
 st.title("Determinar propriedades da liga")
