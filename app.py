@@ -18,7 +18,7 @@ def apply_model(param, predict):
     x = df[[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)']].values
     y = df[predict].values
     
-    X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.65, random_state=42)
     
     models = ['Linear Regression', 'Decision Tree Regressor','Random Forest Regressor']
     mae = 1000
