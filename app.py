@@ -12,10 +12,10 @@ def apply_model(param, predict):
 
     df = get_data()
 
-    x = df.drop(columns=[" Tensile Strength (MPa)"," Elongation (%)"," Reduction in Area (%)"]).values
+    x = df[[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)']].values
     y = df[predict].values
 
-
+    st.write(type(predict))
     
     X_train, X_test, y_train, y_test = train_test_split(x, y, train_size = 0.7, shuffle = True, random_state=2)
     
@@ -27,10 +27,6 @@ def apply_model(param, predict):
     pred = regressor.predict(param)
 
     return pred
-
-
-
-
 
 
 
