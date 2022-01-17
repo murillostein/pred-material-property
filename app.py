@@ -24,7 +24,7 @@ def apply_model(param, predict):
     mae = 1000
     r2 = 0
     i_best = 0
-    for i in range(0, len(models)):
+    for i in range(1, len(models)):
 
         if i == 1:
             regressor = LinearRegression()
@@ -39,7 +39,6 @@ def apply_model(param, predict):
         
         regressor.fit(X_train, y_train)
 
-        pred = regressor.predict(X_test)
         
         mae_i, r2_i =  mean_absolute_error(y_test, pred), r2_score(y_test, pred)
 
