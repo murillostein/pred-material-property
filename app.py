@@ -1,4 +1,3 @@
-from urllib.parse import _ResultMixinBase
 import pandas as pd
 import streamlit as st
 import numpy as np
@@ -99,5 +98,5 @@ if btn_predict:
     st.write(model)
 
 
-    #prediction = model.predict(df.values)
-    #st.write(prediction)
+    prediction = model.predict(df.values)
+    st.write(prediction)
