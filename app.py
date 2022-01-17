@@ -58,10 +58,10 @@ def apply_model(param, predict):
     return results
 
 
-st.title("Determinar propriedades da liga")
+st.title("Determine alloy properties")
 
 # ----SIDEBAR-----
-st.sidebar.title("Definir parâmetros")
+st.sidebar.title("Define component percentage")
 
 In1 =  st.sidebar.number_input("Carbon C", min_value=0.0,max_value=1.0,step=0.05)
 In2 =  st.sidebar.number_input("Silicon Si", min_value=0.0,max_value=1.0,step=0.05)
@@ -85,7 +85,7 @@ param = [In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15]
 
 df = pd.DataFrame(param,[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)'])
 
-btn_predict = st.sidebar.button("Prever")
+btn_predict = st.sidebar.button("Predict")
 
 if btn_predict:
     results = apply_model(df, In16)
@@ -95,8 +95,7 @@ if btn_predict:
     best_model = results['reg'][results['R2'] == results['R2'].max()].values
     model = best_model[0]
 
-    #st.write(model)
 
     df = [list(df[0])]
     prediction = model.predict(df)
-    st.write('Previsão: ', prediction.item())
+    st.write('Prediction: ', prediction.item())
