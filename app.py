@@ -90,7 +90,7 @@ btn_predict = st.sidebar.button("Prever")
 
 if btn_predict:
     results = apply_model(df, In16)
-    st.write(_ResultMixinBase[['Modelo','MAE','R2']])
+    st.write(results[['Modelo','MAE','R2']])
 
 
     best_model = results['reg'][results['R2'] == results['R2'].max()].values
