@@ -50,7 +50,7 @@ def apply_model(param, predict):
             mae = mae_i
             r2 = r2_i
 
-            best_model = regressor
+            #best_model = regressor
             i_best = i
     #param = [list(param[0])]
     #pred = regressor.predict(param)
@@ -97,5 +97,5 @@ if btn_predict:
     st.write(best_model)
 
 
-    pred = model.predict(df)
-    st.write(pred)
+    prediction = model.predict(df)
+    st.write(prediction)
