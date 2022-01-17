@@ -58,7 +58,7 @@ def apply_model(param, predict):
             'Modelo': models[i],
             'R2': r2,
             'MAE': mae
-        })
+        }, ignore_index=True)
     return results
 
 
