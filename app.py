@@ -56,13 +56,16 @@ def apply_model(param, predict):
 st.title("Determine alloy properties")
 
 st.write("This app aims to demonstrate an application of Artificial Intelligence on Metallurgical and Mechanical Engineering industry by providing an efficient and accurate tool to predict alloy properties based on its composition.")
-st.write("The process of testing a large number of materials with different compositions in a laboratory is a slow and expesive task. By utlizing this app, you can reduce significatively both problemns and still have high accuracy (~95%)")
+st.write("The process of testing a large number of materials with different compositions in a laboratory is a slow and expesive task. By utlizing this app, you can reduce significatively both problems and still have high accuracy (~95%).")
 st.write("Select the component weight percentage on the lateral section and the property you want to predict.")
 
 st.write('*Dataset:* https://www.kaggle.com/rohannemade/mechanical-properties-of-low-alloy-steels')
+
+
+
 # -------SIDEBAR----------
 st.sidebar.title("Define component percentage")
-
+st.sidebar.markdown("")
 In1 =  st.sidebar.number_input("Carbon C", min_value=0.0,max_value=1.0,step=0.05)
 In2 =  st.sidebar.number_input("Silicon Si", min_value=0.0,max_value=1.0,step=0.05)
 In3 =  st.sidebar.number_input("Manganeses N", min_value=0.0,max_value=1.0,step=0.05)
@@ -79,7 +82,9 @@ In13 = st.sidebar.number_input("Carbon equivalent Ceq", min_value=0.0,max_value=
 In14 = st.sidebar.number_input("Nb + Ta", min_value=0.0,max_value=1.0,step=0.05)
 In15 = st.sidebar.number_input("Temperature (°C)", min_value=0.0,max_value=750.0,step=20.0)
 
-st.sidebar.subheader("Predict")
+
+st.sidebar.markdown("")
+st.sidebar.subheader("Value to predict")
 In16 = st.sidebar.selectbox('',[" Tensile Strength (MPa)"," Elongation (%)"," Reduction in Area (%)"])
 
 param = [In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15]
@@ -87,7 +92,7 @@ param = [In1,In2,In3,In4,In5,In6,In7,In8,In9,In10,In11,In12,In13,In14,In15]
 
 df = pd.DataFrame(param,[' C', ' Si', ' Mn', ' P', ' S', ' Ni', ' Cr', ' Mo',' Cu', 'V', ' Al', ' N', 'Ceq', 'Nb + Ta', ' Temperature (°C)'])
 
-btn_predict = st.sidebar.button("Value to predict")
+btn_predict = st.sidebar.button("Predict")
 
 
 st.sidebar.markdown('') 
@@ -99,6 +104,8 @@ if btn_predict:
 
 
     st.header("Results")
+
+    st.subheader("Model accuracy")
     st.write(results[['Modelo','MAE','R2']].set_index('Modelo'))
 
 
@@ -108,4 +115,5 @@ if btn_predict:
 
     df = [list(df[0])]
     prediction = model.predict(df)
-    st.write('Prediction: ', prediction.item())
+    st.write('Prediction')
+    st.write('The model utilized was ', model, ' and the prediction is' , prediction.item())
